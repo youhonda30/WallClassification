@@ -1,0 +1,226 @@
+{
+    "Records": [
+        {
+            "keywords": "石張り 壁,石張り 外壁,石張り 壁面,石張り",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "large",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/石張り",
+            "no_directory" : true
+
+        },
+        {
+            "keywords": "吹付タイル 壁,吹付タイル,吹付タイル 壁面,吹付タイル 外壁",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "large",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/吹付タイル",
+            "no_directory" : true
+        },
+        {
+            "keywords": "壁 スパンドレル,スパンドレル 外壁,スパンドレル 壁面,スパンドレル",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "large",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/スパンドレル",
+            "no_directory" : true
+
+        },
+        {
+            "keywords": "押出成形セメント板 壁,押出成形セメント板,押出成形セメント板 外壁,押出成形セメント板 壁面",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "large",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/押出成形セメント板",
+            "no_directory" : true
+        },
+        {
+            "keywords": "タイル張り 壁,タイル張り,タイル張り 壁面,タイル張り 外壁",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "large",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/タイル張り",
+            "no_directory" : true
+        },
+        {
+            "keywords": "スレート波板張り 壁,スレート波板張り,スレート波板張り 壁面,スレート波板張り 外壁",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "large",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/スレート波板張り",
+            "no_directory" : true
+        },
+        {
+            "keywords": "コンクリート打ち放し 壁,コンクリート打ち放し,コンクリート打ち放し 壁面,コンクリート打ち放し 外壁",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "large",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/コンクリート打ち放し",
+            "no_directory" : true
+        },
+        {
+            "keywords": "コンクリートブロック 壁,コンクリートブロック,コンクリートブロック 壁面,コンクリートブロック 外壁",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "large",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/コンクリートブロック",
+            "no_directory" : true
+        },
+        {
+            "keywords": "ガラスブロック 壁,ガラスブロック,ガラスブロック 壁面,ガラスブロック 外壁",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "large",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/ガラスブロック",
+            "no_directory" : true
+        },
+        {
+            "keywords": "ガラスカーテンウォール 壁,ガラスカーテンウォール,ガラスカーテンウォール 壁面,ガラスカーテンウォール 外壁",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "large",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/ガラスカーテンウォール",
+            "no_directory" : true
+        },
+        {
+            "keywords": "ALC板 壁,ACL板 壁面,ALC板,ALC板 外壁",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "large",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/ALC板",
+            "no_directory" : true
+        },
+        {
+            "keywords": "石張り 壁,石張り 外壁,石張り 壁面,石張り",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "medium",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/石張り",
+            "no_directory" : true
+        },
+        {
+            "keywords": "吹付タイル 壁,吹付タイル,吹付タイル 壁面,吹付タイル 外壁",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "medium",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/吹付タイル",
+            "no_directory" : true
+        },
+        {
+            "keywords": "壁 スパンドレル,スパンドレル 外壁,スパンドレル 壁面,スパンドレル",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "medium",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/スパンドレル",
+            "no_directory" : true
+        },
+        {
+            "keywords": "押出成形セメント板 壁,押出成形セメント板,押出成形セメント板 外壁,押出成形セメント板 壁面",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "medium",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/押出成形セメント板",
+            "no_directory" : true
+        },
+        {
+            "keywords": "タイル張り 壁,タイル張り,タイル張り 壁面,タイル張り 外壁",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "medium",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/タイル張り",
+            "no_directory" : true
+        },
+        {
+            "keywords": "スレート波板張り 壁,スレート波板張り,スレート波板張り 壁面,スレート波板張り 外壁",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "medium",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/スレート波板張り",
+            "no_directory" : true
+        },
+        {
+            "keywords": "コンクリート打ち放し 壁,コンクリート打ち放し,コンクリート打ち放し 壁面,コンクリート打ち放し 外壁",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "medium",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/コンクリート打ち放し",
+            "no_directory" : true
+        },
+        {
+            "keywords": "コンクリートブロック 壁,コンクリートブロック,コンクリートブロック 壁面,コンクリートブロック 外壁",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "medium",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/コンクリートブロック",
+            "no_directory" : true
+        },
+        {
+            "keywords": "ガラスブロック 壁,ガラスブロック,ガラスブロック 壁面,ガラスブロック 外壁",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "medium",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/ガラスブロック",
+            "no_directory" : true
+        },
+        {
+            "keywords": "ガラスカーテンウォール 壁,ガラスカーテンウォール,ガラスカーテンウォール 壁面,ガラスカーテンウォール 外壁",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "medium",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/ガラスカーテンウォール",
+            "no_directory" : true
+        },
+        {
+            "keywords": "ALC板 壁,ACL板 壁面,ALC板,ALC板 外壁",
+            "limit": 1000,
+            "chromedriver": "C:\\chromedriver.exe",
+            "size": "medium",
+            "type": "photo",
+            "no_numbering" : true,
+            "output_directory": "downloads/ALC板",
+            "no_directory" : true
+        }
+    ]
+}
