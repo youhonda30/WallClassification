@@ -1,10 +1,11 @@
-
-# labels=['石張り','吹付タイル','押出成形セメント板','タイル張り','スレート波板張り', "スパンドレル",
-#         "コンクリート打ち放し", "コンクリートブロック","ガラスブロック","ガラスカーテンウォール", "ALC板" ]
+"""
+サンプルのモデルの定義と訓練を行うモジュール
+vgg16をベースにした転移学習モデルとなっている。
+"""
 from keras.models import Model,Sequential
 import tensorflow as tf
 from keras.layers.convolutional import Conv2D
-from keras.layers import Activation, Dense, GlobalAveragePooling2D,Input, InputLayer, Lambda, Dropout, BatchNormalization
+from keras.layers import Activation, Dense, GlobalAveragePooling2D, Input, InputLayer, Lambda, Dropout, BatchNormalization
 from keras.backend import sigmoid
 from keras.applications.vgg16 import VGG16, preprocess_input
 from keras.preprocessing.image import ImageDataGenerator
@@ -12,15 +13,16 @@ from keras.optimizers import SGD, Adam
 from keras.callbacks import CSVLogger
 from keras.callbacks import TensorBoard, EarlyStopping
 import sys
-from multiprocessing import freeze_support
-from keras import regularizers
 import numpy as np
 from collections import Counter
 import continue_fit as cf
-
 from keras.utils import multi_gpu_model
 
 def vgg_based_model(input_shape, n_categories, fulltraining = False):
+"""
+VGG16をベースにした転移学習モデルを生成する。
+fulltraining: Trueにすると、ベースモデルも含めて訓練可能にする。訓練速度が非常に遅くなる。
+"""
     base_model=VGG16(weights='imagenet',include_top=False,
                     input_tensor=Input(shape=input_shape))
 
@@ -46,18 +48,22 @@ def vgg_based_model(input_shape, n_categories, fulltraining = False):
 
 import argparse 
 if __name__ == "__main__":
+    # コマンドライン引数の定義/評価
     batch_size=32
     input_shape = (224,224,3)
     parser = argparse.ArgumentParser()
-    parser.add_argument("model_name")
-    parser.add_argument("-t", "--train_dir", default='resized_cleaned')
-    parser.add_argument("-v","--validation_dir",default='resized_val')
+    parser.add_argument("model_name", help="保存するモデルファイルの名前、兼tensorBoardのログディレクトリ名")
+    parser.add_argument("-t", "--train_dir", default='resized_cleaned', help="トレーニングデータセットが入っているディレクトリ")
+    parser.add_argument("-v","--validation_dir",default='resized_val', help ="バリデーションデータセットが入っているディレクトリ")
     args = parser.parse_args()
     file_name = args.model_name
     train_dir=args.train_dir
     validation_dir=args.validation_dir
+
+    #訓練データの読み込み及びデータ拡張を行うための画像ジェネレータを生成。
+    #VGG16用の前処理及び平行移動、回転、左右反転、シアー変換をランダムにかける。
     train_datagen=ImageDataGenerator(
-        preprocessing_function=preprocess_input,
+        preprocessing_function=preprocess_input, #VGG16の前処理
         height_shift_range=0.02,
         width_shift_range=0.02,
         shear_range=0.05,
@@ -65,11 +71,6 @@ if __name__ == "__main__":
         rotation_range=5,
         horizontal_flip=True,
         )
-
-    validation_datagen=ImageDataGenerator(
-        preprocessing_function=preprocess_input,
-        )
-
     train_generator=train_datagen.flow_from_directory(
         train_dir,
         target_size=input_shape[0:2],
@@ -78,12 +79,18 @@ if __name__ == "__main__":
         shuffle=True
         )
     
+
     n_categories=len(train_generator.class_indices)
+    #サンプルの多いクラスに予測が集中しないように、少ないサンプルのクラスほど重くなるように重みづけ
     class_weight ={ clss: len(train_generator.classes) / len(train_generator.class_indices) / count
                      for (clss,count) in Counter(train_generator.classes).most_common() }
-    print(train_generator.class_indices)
-    print(class_weight)
-    print(train_generator.directory)
+    print("classes:",train_generator.class_indices)
+    print("class weight:",class_weight)
+
+    #バリデーションデータの画像読み込み処理を行うジェネレータを生成
+    validation_datagen=ImageDataGenerator(
+        preprocessing_function=preprocess_input,
+        )
     validation_generator=validation_datagen.flow_from_directory(
         validation_dir,
         target_size=input_shape[0:2],
@@ -91,18 +98,18 @@ if __name__ == "__main__":
         class_mode='categorical',
         shuffle=True
     )
+
     model = vgg_based_model(input_shape, n_categories)
-    # parallel_model = multi_gpu_model(model, gpus=2)
+    # parallel_model = multi_gpu_model(model, gpus=2)   #マルチGPUを使うときはこちら
 
     model.compile(optimizer=Adam(lr=1e-3),
                 loss='categorical_crossentropy',
                 metrics=['accuracy'])
     
+    #訓練(中断しても続きから継続できる)
     hist=model.fit_generator(
         train_generator,
         epochs=200,
-        workers=4,
-        max_queue_size=8,
         initial_epoch=cf.load_epoch_init(file_name),
         # use_multiprocessing=True,
         verbose=1,
