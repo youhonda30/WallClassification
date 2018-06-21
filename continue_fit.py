@@ -1,5 +1,21 @@
 # -*- coding: utf-8 -*-
+"""
+訓練を中断-継続するためのモジュール。
+Tensorboardのlogディレクトリにpickleファイルを入れる前提なので、
+Tensorboardと一緒に使う事。
+使い方はこんな感じ。
 
+import continue_fit as cf
+model.fit_generator(
+        train_generator,
+        epochs=epochs,
+        initial_epoch=cf.load_epoch_init(model_name),
+        validation_data=validation_data,
+        callbacks=[
+            TensorBoard(model_name),
+            cf.early_stopping(model, model_name),
+            ])
+"""
 from keras.callbacks import LambdaCallback
 import pickle
 import os
@@ -24,7 +40,6 @@ def early_stopping(model:Model, name:str):
         model.load_weights(name + ".h5")
     def onend(epoch, logs):
         model.save(name+".h5")
-        print(epoch, ", log:", logs)
         with open(name + "/epochs" ,mode = "wb") as f:
             pickle.dump(epoch+1,f)
         val_loss = load_pickle(name + "/val_loss")

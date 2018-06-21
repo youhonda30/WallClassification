@@ -1,7 +1,10 @@
+"""
+重複ファイルを削除するスクリプト
+inputの中にあるファイルと同名のファイルをtargetから削除する
+"""
 import argparse as ap
 import os
 import shutil
-#重複ファイルを削除するスクリプト。inputの中にあるファイルと同名のファイルをtargetから削除する
 
 #root_dir下のファイルパスを全列挙
 def walk(root_dir):
