@@ -1,3 +1,9 @@
+"""
+クラスインデックス->クラス名
+のディクショナリをclasses.pklファイルとして保存するだけのスクリプト。
+予測するときに名前を表示するために必要なので。
+"""
+
 from keras.preprocessing.image import ImageDataGenerator
 from pickle import dump
 import argparse 
@@ -8,10 +14,6 @@ if __name__ == "__main__":
     parser.add_argument("-t", "--train_dir", default='resized_val')
     args = parser.parse_args()
     train_dir=args.train_dir
-# with tf.device("/cpu:0"): # add
-    # model.compile(optimizer=Adam(lr=1e-4),
-    #             loss='categorical_crossentropy',
-    #             metrics=['accuracy'])
     train_datagen=ImageDataGenerator( )
 
     train_generator=train_datagen.flow_from_directory(

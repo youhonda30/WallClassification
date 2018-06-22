@@ -1,4 +1,6 @@
-# 半教師在り学習を行うために、既存モデルを使って未クレンジング画像から確度の高い画像だけを抜き出すスクリプト
+"""
+半教師在り学習を行うために、既存モデルを使って未クレンジング画像から確度の高い画像だけを抜き出すスクリプト
+"""
 from PIL import Image
 from keras.models import load_model
 import argparse
