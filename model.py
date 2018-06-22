@@ -17,6 +17,7 @@ import numpy as np
 from collections import Counter
 import continue_fit as cf
 from keras.utils import multi_gpu_model
+from keras import regularizers
 
 def vgg_based_model(input_shape, n_categories, fulltraining = False):
     """
