@@ -19,10 +19,10 @@ import continue_fit as cf
 from keras.utils import multi_gpu_model
 
 def vgg_based_model(input_shape, n_categories, fulltraining = False):
-"""
-VGG16をベースにした転移学習モデルを生成する。
-fulltraining: Trueにすると、ベースモデルも含めて訓練可能にする。訓練速度が非常に遅くなる。
-"""
+    """
+    VGG16をベースにした転移学習モデルを生成する。
+    fulltraining: Trueにすると、ベースモデルも含めて訓練可能にする。訓練速度が非常に遅くなる。
+    """
     base_model=VGG16(weights='imagenet',include_top=False,
                     input_tensor=Input(shape=input_shape))
 
@@ -44,9 +44,9 @@ fulltraining: Trueにすると、ベースモデルも含めて訓練可能に�
         # fix weights before VGG16 14layers
         for layer in base_model.layers[:15]:
             layer.trainable=False
-    return model 
+    return model
 
-import argparse 
+import argparse
 if __name__ == "__main__":
     # コマンドライン引数の定義/評価
     batch_size=32
@@ -78,7 +78,7 @@ if __name__ == "__main__":
         class_mode='categorical',
         shuffle=True
         )
-    
+
 
     n_categories=len(train_generator.class_indices)
     #サンプルの多いクラスに予測が集中しないように、少ないサンプルのクラスほど重くなるように重みづけ
@@ -105,7 +105,7 @@ if __name__ == "__main__":
     model.compile(optimizer=Adam(lr=1e-3),
                 loss='categorical_crossentropy',
                 metrics=['accuracy'])
-    
+
     #訓練(中断しても続きから継続できる)
     hist=model.fit_generator(
         train_generator,
