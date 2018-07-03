@@ -110,7 +110,7 @@ if __name__ == "__main__":
     #訓練(中断しても続きから継続できる)
     hist=model.fit_generator(
         train_generator,
-        epochs=200,
+        epochs=30,
         initial_epoch=cf.load_epoch_init(file_name),
         # use_multiprocessing=True,
         verbose=1,
