@@ -17,23 +17,24 @@ import numpy as np
 from collections import Counter
 import continue_fit as cf
 from keras.utils import multi_gpu_model
+from keras import regularizers
 
 def vgg_based_model(input_shape, n_categories, fulltraining = False):
-"""
-VGG16をベースにした転移学習モデルを生成する。
-fulltraining: Trueにすると、ベースモデルも含めて訓練可能にする。訓練速度が非常に遅くなる。
-"""
+    """
+    VGG16をベースにした転移学習モデルを生成する。
+    fulltraining: Trueにすると、ベースモデルも含めて訓練可能にする。訓練速度が非常に遅くなる。
+    """
     base_model=VGG16(weights='imagenet',include_top=False,
                     input_tensor=Input(shape=input_shape))
 
     #add new layers instead of FC networks
     x=base_model.output
     x=GlobalAveragePooling2D()(x)
-    x=Dense(1024,kernel_regularizer=regularizers.l2(0.000001),activity_regularizer=regularizers.l1(0.000001))(x)
+    x=Dense(1024)(x)
     x=BatchNormalization()(x)
     x=Activation("relu")(x)
     x=Dropout(0.5)(x)
-    x=Dense(1024,kernel_regularizer=regularizers.l2(0.000001),activity_regularizer=regularizers.l1(0.000001))(x)
+    x=Dense(1024)(x)
     x=BatchNormalization()(x)
     x=Activation("relu")(x)
     x=Dropout(0.5)(x)
@@ -44,9 +45,9 @@ fulltraining: Trueにすると、ベースモデルも含めて訓練可能に�
         # fix weights before VGG16 14layers
         for layer in base_model.layers[:15]:
             layer.trainable=False
-    return model 
+    return model
 
-import argparse 
+import argparse
 if __name__ == "__main__":
     # コマンドライン引数の定義/評価
     batch_size=32
@@ -78,7 +79,7 @@ if __name__ == "__main__":
         class_mode='categorical',
         shuffle=True
         )
-    
+
 
     n_categories=len(train_generator.class_indices)
     #サンプルの多いクラスに予測が集中しないように、少ないサンプルのクラスほど重くなるように重みづけ
@@ -105,14 +106,15 @@ if __name__ == "__main__":
     model.compile(optimizer=Adam(lr=1e-3),
                 loss='categorical_crossentropy',
                 metrics=['accuracy'])
-    
+
     #訓練(中断しても続きから継続できる)
     hist=model.fit_generator(
         train_generator,
-        epochs=200,
+        epochs=30,
         initial_epoch=cf.load_epoch_init(file_name),
         # use_multiprocessing=True,
         verbose=1,
+        workers=8,
         validation_data=validation_generator,
         class_weight=class_weight,
         callbacks=[
